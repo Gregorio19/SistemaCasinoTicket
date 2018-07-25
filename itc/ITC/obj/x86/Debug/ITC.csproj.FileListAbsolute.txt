@@ -1,0 +1,23 @@
+\\Mac\Dropbox\18. SVN\branches\Casino\ImprimeTicketCasino\ITC\ITC\obj\x86\Debug\ITC.Form1.resources
+\\Mac\Dropbox\18. SVN\branches\Casino\ImprimeTicketCasino\ITC\ITC\obj\x86\Debug\ITC.Properties.Resources.resources
+\\Mac\Dropbox\18. SVN\branches\Casino\ImprimeTicketCasino\ITC\ITC\obj\x86\Debug\ITC.csproj.GenerateResource.Cache
+\\Mac\Dropbox\18. SVN\branches\Casino\ImprimeTicketCasino\ITC\ITC\bin\Debug\ITC.exe
+\\Mac\Dropbox\18. SVN\branches\Casino\ImprimeTicketCasino\ITC\ITC\bin\Debug\ITC.pdb
+\\Mac\Dropbox\18. SVN\branches\Casino\ImprimeTicketCasino\ITC\ITC\obj\x86\Debug\ITC.exe
+\\Mac\Dropbox\18. SVN\branches\Casino\ImprimeTicketCasino\ITC\ITC\obj\x86\Debug\ITC.pdb
+C:\Users\jose.paz\Desktop\Totalpack\FuentesTickets\itc\ITC\obj\x86\Debug\ITC.exe
+C:\Users\jose.paz\Desktop\Totalpack\FuentesTickets\itc\ITC\obj\x86\Debug\ITC.pdb
+C:\Users\jose.paz\Desktop\Totalpack\FuentesTickets\itc\ITC\bin\Debug\ITC.exe
+C:\Users\jose.paz\Desktop\Totalpack\FuentesTickets\itc\ITC\bin\Debug\ITC.pdb
+C:\Users\jose.paz\Desktop\Totalpack\FuentesTickets\itc\ITC\obj\x86\Debug\ITC.csprojResolveAssemblyReference.cache
+C:\Users\jose.paz\Desktop\Totalpack\FuentesTickets\itc\ITC\obj\x86\Debug\ITC.Form1.resources
+C:\Users\jose.paz\Desktop\Totalpack\FuentesTickets\itc\ITC\obj\x86\Debug\ITC.Properties.Resources.resources
+C:\Users\jose.paz\Desktop\Totalpack\FuentesTickets\itc\ITC\obj\x86\Debug\ITC.csproj.GenerateResource.Cache
+C:\Users\jose.paz\Desktop\Sistema Casino 2018-07-20\FuentesTickets\itc\ITC\obj\x86\Debug\ITC.exe
+C:\Users\jose.paz\Desktop\Sistema Casino 2018-07-20\FuentesTickets\itc\ITC\obj\x86\Debug\ITC.pdb
+C:\Users\jose.paz\Desktop\Sistema Casino 2018-07-20\FuentesTickets\itc\ITC\bin\Debug\ITC.exe
+C:\Users\jose.paz\Desktop\Sistema Casino 2018-07-20\FuentesTickets\itc\ITC\bin\Debug\ITC.pdb
+C:\Users\jose.paz\Desktop\Sistema Casino 2018-07-20\FuentesTickets\itc\ITC\obj\x86\Debug\ITC.csprojResolveAssemblyReference.cache
+C:\Users\jose.paz\Desktop\Sistema Casino 2018-07-20\FuentesTickets\itc\ITC\obj\x86\Debug\ITC.Form1.resources
+C:\Users\jose.paz\Desktop\Sistema Casino 2018-07-20\FuentesTickets\itc\ITC\obj\x86\Debug\ITC.Properties.Resources.resources
+C:\Users\jose.paz\Desktop\Sistema Casino 2018-07-20\FuentesTickets\itc\ITC\obj\x86\Debug\ITC.csproj.GenerateResource.Cache
