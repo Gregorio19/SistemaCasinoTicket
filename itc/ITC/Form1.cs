@@ -554,7 +554,7 @@ namespace ITC
                         DateTime horadementserv = DateTime.ParseExact(horaentradacon, "HH:mm:ss", CultureInfo.InvariantCulture);
                         DateTime horadesaliserv = DateTime.ParseExact(horasalidacon, "HH:mm:ss", CultureInfo.InvariantCulture);
                        // MessageBox.Show("loco 3");
-                         MessageBox.Show("hora entr5ada "+ horadementserv + " hora salida "+ horadesaliserv + " hora de marca " + horademarca);
+                        // MessageBox.Show("hora entr5ada "+ horadementserv + " hora salida "+ horadesaliserv + " hora de marca " + horademarca);
                         if (horademarca >= horadementserv && horademarca <= horadesaliserv)
                         {
                            // MessageBox.Show("actualizado el id del servicio");

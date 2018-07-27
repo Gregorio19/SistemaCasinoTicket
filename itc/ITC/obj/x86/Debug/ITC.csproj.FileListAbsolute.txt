@@ -21,3 +21,11 @@ C:\Users\jose.paz\Desktop\Sistema Casino 2018-07-20\FuentesTickets\itc\ITC\obj\x
 C:\Users\jose.paz\Desktop\Sistema Casino 2018-07-20\FuentesTickets\itc\ITC\obj\x86\Debug\ITC.Form1.resources
 C:\Users\jose.paz\Desktop\Sistema Casino 2018-07-20\FuentesTickets\itc\ITC\obj\x86\Debug\ITC.Properties.Resources.resources
 C:\Users\jose.paz\Desktop\Sistema Casino 2018-07-20\FuentesTickets\itc\ITC\obj\x86\Debug\ITC.csproj.GenerateResource.Cache
+D:\SistemaCasinoTicket\itc\ITC\obj\x86\Debug\ITC.exe
+D:\SistemaCasinoTicket\itc\ITC\obj\x86\Debug\ITC.pdb
+D:\SistemaCasinoTicket\itc\ITC\bin\Debug\ITC.exe
+D:\SistemaCasinoTicket\itc\ITC\bin\Debug\ITC.pdb
+D:\SistemaCasinoTicket\itc\ITC\obj\x86\Debug\ITC.csprojResolveAssemblyReference.cache
+D:\SistemaCasinoTicket\itc\ITC\obj\x86\Debug\ITC.Form1.resources
+D:\SistemaCasinoTicket\itc\ITC\obj\x86\Debug\ITC.Properties.Resources.resources
+D:\SistemaCasinoTicket\itc\ITC\obj\x86\Debug\ITC.csproj.GenerateResource.Cache
