@@ -86,7 +86,7 @@ namespace ITC
         string impregion;
 
         int rano;
-        Int64 ultm_reg;
+        Int64 ultm_reg = 0;
         int rmes;
         int rdia;
         int rhora;
@@ -145,7 +145,7 @@ namespace ITC
         string msg25;
         string numeroticketxhoy;
         string numeroticketxserv;
-        Int64 formatoult_reg;
+        Int64 formatoult_reg = 0;
 
         int USERIDxx;
         DateTime CHECKTIME;
@@ -173,6 +173,7 @@ namespace ITC
         string f2vfusersoft;
         string f2vfclavesoft;
         int f2check;
+        int debug;
 
         int datiduser;
         string datfecha;
@@ -231,7 +232,9 @@ namespace ITC
         private void generaversion()
         {
             DateTime dt = DateTime.Now;
-            log(dt + ": Versión 1.0.4");
+            log(" ");
+            log(dt + ": Versión 1.1.0");
+            log(" ");
         }
 
         private void cargadatosbd()
@@ -254,6 +257,8 @@ namespace ITC
                 Linea = Lee.ReadLine();
                 f2vfclavesoft = Linea;
 
+                Linea = Lee.ReadLine();
+                debug = Convert.ToInt32(Linea);
 
             }
         }
@@ -272,7 +277,11 @@ namespace ITC
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("No se pudo establecer conexión con la base de datos");
+                    if (debug == 1)
+                    {
+                        log("No se pudo establecer conexión con la base de datos");
+                    }
+
                     this.Close();
                     DateTime dtex = DateTime.Now;
                     string bderror = dtex + ": PRC-conectarbd - " + ex.Message;
@@ -295,7 +304,10 @@ namespace ITC
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("No se pudo establecer conexión con la base de datos");
+                    if (debug == 1)
+                    {
+                        log("No se pudo establecer conexión con la base de datos");
+                    }
                     this.Close();
                     DateTime dtex = DateTime.Now;
                     string bderror = dtex + ": PRC-conectarbd - " + ex.Message;
@@ -318,7 +330,10 @@ namespace ITC
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("No se pudo establecer conexión con la base de datos");
+                    if (debug == 1)
+                    {
+                        log("No se pudo establecer conexión con la base de datos");
+                    }
                     this.Close();
                     DateTime dtex = DateTime.Now;
                     string bderror = dtex + ": PRC-conectarbd - " + ex.Message;
@@ -337,7 +352,11 @@ namespace ITC
                 SqlCommand cmdultimoreg = new SqlCommand(ultimoreg, conn);
                 SqlDataReader readerultimoreg = cmdultimoreg.ExecuteReader();
 
-                //MessageBox.Show("intenta entrar");
+                
+                if (debug == 1)
+                {
+                    //log("intenta entrar a la conexion");
+                }
 
                 if (readerultimoreg.HasRows)
                 {
@@ -352,12 +371,18 @@ namespace ITC
                     fechasinformato = bdmaxdatetime + formatohora;
                     formatoult_reg = Convert.ToInt64(readerultimoreg[4]);
                     serv_ulti_upd = formatoult_reg.ToString();
-                    //MessageBox.Show(ultmarca + "Antes de cambiar en 0");
+                    if (debug == 1)
+                    {
+                        //log(ultmarca + "Antes de cambiar en 0");
+                    }
+                    
                     if (ultmarca == 0)
                     {
                         ultmarca = Convert.ToInt64(fechasinformato);
                         ultm_reg = Convert.ToInt64(readerultimoreg[4]);
-                       // MessageBox.Show(ultmarca + "Ultima marca "+ ultm_reg+  "ulm reg" + formatoult_reg + " vs ulm reg ");
+                       
+                            log(ultmarca + " Ultima marca " + ultm_reg + " ulm reg " + formatoult_reg + " vs ulm reg ");
+
                     }
 
                 }
@@ -368,20 +393,29 @@ namespace ITC
                 }
 
                 //if (Convert.ToInt64(fechasinformato) > ultmarca)
-                if (formatoult_reg > ultm_reg )
+                if (formatoult_reg > ultm_reg)
                 {
-                    //MessageBox.Show("entra a fecha mayor a marca " + fechasinformato +"  " + ultmarca);
+                    
+                        log("entra a fecha mayor a marca " + fechasinformato + "  " + ultmarca);
+                    
                     timer1.Enabled = false;
 
                     conn.Close();
-                    //MessageBox.Show(ultmarca + "Ultima marca " + ultm_reg + "ulm reg" + formatoult_reg + " vs ulm reg  segunda vez");
+                    if (debug == 1)
+                    {
+                        log(ultmarca + " Ultima marca " + ultm_reg + " ulm reg" + formatoult_reg + " vs ulm reg  segunda vez");
+                    }
                     obtienedatosaprocesar();
                     validadiaconsulta();
                     validaturnosvalidos();
 
                     ultmarca = Convert.ToInt64(fechasinformato);
                     ultm_reg = formatoult_reg;
-                    //MessageBox.Show(ultmarca + "Ultima marca " + ultm_reg + "ulm reg" + formatoult_reg + " vs ulm reg ");
+                    if (debug == 1)
+                    {
+                        log(ultmarca + " Ultima marca " + ultm_reg + " ulm reg" + formatoult_reg + " vs ulm reg ");
+                        log(" ");
+                    }
 
                     controlconn = 1;
                 }
@@ -395,6 +429,7 @@ namespace ITC
                 {
                     conectarbd();
                     controlconn = 0;
+                    timer1.Enabled = true;
                 }
             }
             catch (Exception exm2)
@@ -421,7 +456,10 @@ namespace ITC
                 String datultimoreg = "select iduser, fecha, sn from casino where CONVERT(varchar(100),fecha,120) = '" + bdmaxdatetime3 + "'";
                 SqlCommand cmddatultimoreg = new SqlCommand(datultimoreg, conn);
                 SqlDataReader readerdatultimoreg = cmddatultimoreg.ExecuteReader();
-                //MessageBox.Show(ultmarca + "Ultima marca intenta conectar al encontrar algo en la base de datos " + bdmaxdatetime3);
+                if (debug == 1)
+                {
+                    log(ultmarca + "Ultima marca intenta conectar al encontrar algo en la base de datos " + bdmaxdatetime3);
+                }
                 if (readerdatultimoreg.HasRows)
                 {
                     readerdatultimoreg.Read();
@@ -430,7 +468,11 @@ namespace ITC
                     datfecha = Convert.ToString(readerdatultimoreg[1]);
                     //datservicio = Convert.ToInt32(readerdatultimoreg[2]);
                     datsn = Convert.ToString(readerdatultimoreg[2]);
-                   //MessageBox.Show("encontro algo " + datfecha + " " + datiduser + " " + datsn);
+                    if (debug == 1)
+                    {
+                        log("encontro algo " + datfecha + " " + datiduser + " " + datsn);
+                    }
+                    
                     conn.Close();
                 }
                 else
@@ -469,7 +511,10 @@ namespace ITC
                     readerdia.Read();
 
                     valdia = Convert.ToInt32(readerdia[0]);
-                    //MessageBox.Show("encontro el dia  " + valdia);
+                    if (debug == 1)
+                    {
+                        log("encontro el dia  " + valdia);
+                    }
                     conn.Close();
                 }
                 else
@@ -536,28 +581,48 @@ namespace ITC
             {
                 //timer1.Enabled = false;
                 conectarbd();
-                String addidserv = "select az.TimeZoneID, CONVERT(TIME(0),az." + diaini + "), CONVERT(TIME(0),az."+ diafin +"), cs.ultm_reg from casino cs, ACTimeZones az where cs.ultm_reg = (SELECT MAX(ultm_reg) from casino) and cs.sn not in ('MANUAL')";
+                String addidserv = "select az.TimeZoneID, CONVERT(TIME(0),az." + diaini + "), CONVERT(TIME(0),az." + diafin + "), cs.ultm_reg from casino cs, ACTimeZones az where cs.ultm_reg = (SELECT MAX(ultm_reg) from casino) and cs.sn not in ('MANUAL')";
                 SqlCommand cmdaddidserv = new SqlCommand(addidserv, conn);
                 SqlDataReader readaddidserv = cmdaddidserv.ExecuteReader();
 
                 if (readaddidserv.HasRows)
                 {
-                   // MessageBox.Show("Realizo la consulta del servicio");
+                    
+                    if (debug == 1)
+                    {
+                        log("Realizo la consulta del servicio");
+                    }
                     while (readaddidserv.Read())
                     {
-                       // MessageBox.Show("loco 1");
+                        // log("loco 1");
+                        if (debug == 1)
+                        {
+                            log("se encontraron registros en servicios al dia ");
+                        }
                         string horaentradacon = Convert.ToString(readaddidserv[1]);
                         string horasalidacon = Convert.ToString(readaddidserv[2]);
                         string otracosa = bdmaxdatetime1;
-                       // MessageBox.Show("loco 2");
-                       DateTime horademarca = DateTime.ParseExact(otracosa, "HH:mm:ss",CultureInfo.InvariantCulture);
+                        if (debug == 1)
+                        {
+                            log("se realizo la extracion de horas ");
+                        }
+                        // log("loco 2");
+                        DateTime horademarca = DateTime.ParseExact(otracosa, "HH:mm:ss", CultureInfo.InvariantCulture);
                         DateTime horadementserv = DateTime.ParseExact(horaentradacon, "HH:mm:ss", CultureInfo.InvariantCulture);
                         DateTime horadesaliserv = DateTime.ParseExact(horasalidacon, "HH:mm:ss", CultureInfo.InvariantCulture);
-                       // MessageBox.Show("loco 3");
-                        // MessageBox.Show("hora entr5ada "+ horadementserv + " hora salida "+ horadesaliserv + " hora de marca " + horademarca);
+                        // log("loco 3");
+                        if (debug == 1)
+                        {
+                            log("se realizo la comversion de  de horas correctamente ");
+                            log("hora entr5ada " + horadementserv + " hora salida " + horadesaliserv + " hora de marca " + horademarca);
+                        }
                         if (horademarca >= horadementserv && horademarca <= horadesaliserv)
                         {
-                           // MessageBox.Show("actualizado el id del servicio");
+                            // 
+                            if (debug == 1)
+                            {
+                                log("actualizado el id del servicio");
+                            }
                             string newidserv = Convert.ToString(readaddidserv[0]);
                             string ultmimo_reg = Convert.ToString(readaddidserv[3]);
                             serv_ulti_upd = ultmimo_reg;
@@ -595,7 +660,11 @@ namespace ITC
 
                 if (readercmdturnos.HasRows)
                 {
-                    //MessageBox.Show("encontro los servicios asiganados de la persona al dia " + diaini);
+                    
+                    if (debug == 1)
+                    {
+                        log("encontro los servicios asiganados de la persona al dia " + diaini);
+                    }
                     while (readercmdturnos.Read())
                     {
                         //formatohora -> Fecha obtenida registro nuevo
@@ -604,7 +673,11 @@ namespace ITC
                         turnostart = Convert.ToString(readercmdturnos[2]);
                         turnoend = Convert.ToString(readercmdturnos[3]);
                         idservicios1 = Convert.ToInt32(readercmdturnos[4]);
-                       // MessageBox.Show("numero de servicio" + idservicios1);
+                        
+                        if (debug == 1)
+                        {
+                            log("numero de servicio" + idservicios1);
+                        }
                         turnostart1 = turnostart.Split(':');
                         turnostart2 = String.Concat(turnostart1[0], turnostart1[1], turnostart1[2]);
 
@@ -613,11 +686,15 @@ namespace ITC
 
                         if (Convert.ToInt32(turnostart2) <= Convert.ToInt32(formatohora) && Convert.ToInt32(turnoend2) >= Convert.ToInt32(formatohora))
                         {
-                          //  MessageBox.Show("entro al if ");
+                            //  log("entro al if ");
                             conectarbd2();
                             try
                             {
-                           //     MessageBox.Show(" Busqueda antes de consultar numeros de ticket hoy Id de usuario "+ datiduser + " fecha de busqueda " + bdmaxdatetime + " id del servicio " + idservicios1);
+                                if (debug == 1)
+                                {
+                                    log("Entro al if Busqueda antes de consultar numeros de ticket hoy Id de usuario " + datiduser + " fecha de busqueda " + bdmaxdatetime + " id del servicio " + idservicios1);
+                                }
+                                //    
                                 String cont_tick_serv = "select count(*) from casino , casino_valexusuarios csval where casino.iduser = csval.iduser " +
                                 "and casino.servicio = csval.idserv and Casino.iduser = " + datiduser + " " +
                                 "and  CONVERT(varchar(100),(casino.fecha),112) = '" + bdmaxdatetime + "' and csval.idserv = " + idservicios1;
@@ -628,7 +705,11 @@ namespace ITC
                                 if (readercmdcont_tick_serv.HasRows)
                                 {
                                     readercmdcont_tick_serv.Read();
-                                  //  MessageBox.Show("entro al contaodr de vales");
+                                    //  
+                                    if (debug == 1)
+                                    {
+                                        log("entro al contaodr de vales");
+                                    }
                                     string cant_serv_hoy = Convert.ToString(readercmdcont_tick_serv[0]);
                                     Int32 numercomxhoy;
                                     Int32.TryParse(cant_serv_hoy, out numercomxhoy);
@@ -641,16 +722,28 @@ namespace ITC
                                         if (readercmdcont_tick_xdia.HasRows)
                                         {
                                             readercmdcont_tick_xdia.Read();
-                                         //   MessageBox.Show("entro al contaodr de numero");
+                                            //   
+                                            if (debug == 1)
+                                            {
+                                                log("entro al contaodr de numero");
+                                            }
                                             string cant_serv_xdia = Convert.ToString(readercmdcont_tick_xdia[0]);
                                             Int32 numercomxdia;
                                             Int32.TryParse(cant_serv_xdia, out numercomxdia);
 
-                                           // MessageBox.Show("Numeros a comparar xhoy "+ numercomxhoy + " xdia "+ numercomxdia);
+                                            // 
 
+                                            if (debug == 1)
+                                            {
+                                                log("Numeros a comparar xhoy " + numercomxhoy + " xdia " + numercomxdia);
+                                            }
                                             if (numercomxhoy > numercomxdia)
                                             {
-                                             //   MessageBox.Show("El usuario supero el numero de Vales Diarios");
+                                                //   
+                                                if (debug == 1)
+                                                {
+                                                    log("El usuario supero el numero de Vales Diarios");
+                                                }
                                                 conn.Close();
                                                 conn2.Close();
                                                 conn3.Close();
@@ -667,7 +760,11 @@ namespace ITC
                                                 numeroticketxhoy = numercomxhoy.ToString();
                                                 numeroticketxserv = numercomxdia.ToString();
                                                 //armar mensaje e imprimir
-                                               // MessageBox.Show("Manda a imprimir");
+                                                // 
+                                                if (debug == 1)
+                                                {
+                                                    log("Manda a imprimir");
+                                                }
                                                 conn.Close();
                                                 armamensaje();
                                                 consultarrelojimpresora();
@@ -677,7 +774,7 @@ namespace ITC
                                     }
                                     catch (Exception em2)
                                     {
-                                        MessageBox.Show("error " + em2);
+                                        log("error " + em2);
                                         throw;
                                     }
                                     conn3.Close();
@@ -685,15 +782,15 @@ namespace ITC
                             }
                             catch (Exception em2)
                             {
-                                MessageBox.Show("error "+ em2);
+                                log("error " + em2);
                                 throw;
                             }
 
 
                             conn2.Close();
                         }
-                        
-                        
+
+
                     }
                     conn.Close();
 
@@ -746,7 +843,7 @@ namespace ITC
                 String consulta11 = "select distinct ari.impresora " +
                                     " from Machines m, " +
                                     "     ASISTENCIA_RELOJ_IMP ari " +
-                                    " where m.sn = '"+ datsn + "' " +
+                                    " where m.sn = '" + datsn + "' " +
                                     " and m.ip = ari.ipreloj";
                 SqlCommand cmdconsulta11 = new SqlCommand(consulta11, conn);
                 SqlDataReader reader11 = cmdconsulta11.ExecuteReader();
@@ -755,16 +852,21 @@ namespace ITC
                 {
                     reader11.Read();
                     impresoraasociada = Convert.ToString(reader11[0]);
-                    string [] armarut = impresoraasociada.Split(':');
+                    string[] armarut = impresoraasociada.Split(':');
                     impresoraasociada = armarut[0];
                     if (armarut[1] != "" && armarut[1] != null)
                     {
                         puertoimpresoraasociada = armarut[1];
                     }
-           
-                   // string NewString;
-                   // NewString = armarut[0];
-                   // MessageBox.Show("encontro impresora: " + impresoraasociada+ " con maquina " + datsn);
+
+                    // string NewString;
+                    // NewString = armarut[0];
+                    // 
+                    if (debug == 1)
+                    {
+                        log("encontro impresora: " + impresoraasociada + " con maquina " + datsn);
+                    }
+
                     conn.Close();
                 }
                 else
@@ -851,7 +953,7 @@ namespace ITC
             armarut = impssn.Split('-');
             string NewString;
             NewString = armarut[0];
-            if (armarut[1] != "") 
+            if (armarut[1] != "")
             {
                 NewString += armarut[1];
             }
@@ -904,7 +1006,11 @@ namespace ITC
             {
                 clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 clientSocket.NoDelay = true;
-                //MessageBox.Show("M");
+                //
+                if (debug == 1)
+                {
+                    log("Imprimiendo");
+                }
                 IPAddress ip = IPAddress.Parse(impresoraasociada);
                 IPEndPoint ipep;
                 if (puertoimpresoraasociada != " " && puertoimpresoraasociada != "" && puertoimpresoraasociada != null)
@@ -912,7 +1018,7 @@ namespace ITC
                     int x = 0;
 
                     Int32.TryParse(puertoimpresoraasociada, out x);
-                    ipep = new IPEndPoint(ip,x);
+                    ipep = new IPEndPoint(ip, x);
                 }
                 else
                 {
@@ -976,7 +1082,7 @@ namespace ITC
             catch (Exception eximp)
             {
                 string errorimp = "Error al intentar imprimir, IP: " + impresoraasociada + " Error: " + eximp.Message;
-                MessageBox.Show(errorimp);
+                log(errorimp);
                 log(errorimp);
                 clientSocket.Close();
             }
